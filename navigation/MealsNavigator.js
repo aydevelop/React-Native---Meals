@@ -11,8 +11,10 @@ const Stack = createStackNavigator()
 function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='CategoriesScreen' component={CategoriesScreen} />
+      <Stack.Navigator initialRouteName='Categories'>
+        <Stack.Screen name='Categories' component={CategoriesScreen} />
+        <Stack.Screen name='CategoryMeals' component={CategoryMealsScreen} />
+        <Stack.Screen name='MealDetail' component={MealDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
