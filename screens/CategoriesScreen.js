@@ -6,20 +6,29 @@ import {
   Button,
   FlatList,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native'
 
 import { CATEGORIES } from '../data/dummy'
-
 const { height, width } = Dimensions.get('window')
-const renderGridItem = (itemData) => {
-  return (
-    <View style={{ ...styles.gridItem, width: (width - 70) / 2 }}>
-      <Text>{itemData.item.title}</Text>
-    </View>
-  )
-}
 
 export const CategoriesScreen = (props) => {
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate('MealDetail', {
+            title: itemData.item.title,
+          })
+        }}
+      >
+        <View style={{ ...styles.gridItem, width: (width - 70) / 2 }}>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+
   return (
     <FlatList
       keyExtractor={(item, index) => item.id}
@@ -43,5 +52,7 @@ const styles = StyleSheet.create({
     height: 55,
   },
 })
+
+CategoriesScreen.navigationOptions = {}
 
 export default CategoriesScreen
