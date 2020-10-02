@@ -24,7 +24,11 @@ export const MealDetailsScreen = ({ route, navigation }) => {
         duration={itemData.item.duration}
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
-        onSelectMeal={() => {}}
+        onSelectMeal={() => {
+          navigation.navigate('MealDetail', {
+            meal: itemData.item,
+          })
+        }}
       />
     )
   }

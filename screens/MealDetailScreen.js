@@ -1,22 +1,20 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button } from 'react-native'
 
-export const MealDetailsScreen = (props) => {
+export const MealDetailsScreen = ({ route, navigation }) => {
   React.useLayoutEffect(() => {
-    props.navigation.setOptions({
-      title: props.route.params.title,
+    navigation.setOptions({
+      title: route.params.meal.title,
     })
   }, [])
 
   return (
     <View style={styles.screen}>
-      <Text>
-        The MealDetailsScreen Screen!!!!### {props.route.params.title}
-      </Text>
+      <Text>The MealDetailsScreen Screen..................</Text>
       <Button
         title='Go Back'
         onPress={() => {
-          props.navigation.goBack()
+          navigation.goBack()
         }}
       />
     </View>
