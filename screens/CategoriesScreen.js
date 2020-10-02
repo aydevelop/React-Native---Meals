@@ -16,7 +16,6 @@ export const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
       <TouchableOpacity
-        activeOpacity={0.5}
         onPress={() => {
           props.navigation.navigate('CategoryMeals', {
             title: itemData.item.title,
