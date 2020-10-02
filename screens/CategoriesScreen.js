@@ -23,8 +23,23 @@ export const CategoriesScreen = (props) => {
           })
         }}
       >
-        <View style={{ ...styles.gridItem, width: (width - 70) / 2 }}>
-          <Text>{itemData.item.title}</Text>
+        <View
+          style={{
+            ...styles.gridItem,
+            width: (width - 70) / 2,
+            backgroundColor: itemData.item.color,
+            borderRadius: 10,
+            shadowColor: 'black',
+            shadowOpacity: 0.26,
+            shadowOffset: { width: 0, height: 2 },
+            shadowRadius: 10,
+            elevation: 3,
+            padding: 20,
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+          }}
+        >
+          <Text style={styles.title}>{itemData.item.title}</Text>
         </View>
       </TouchableOpacity>
     )
@@ -36,6 +51,7 @@ export const CategoriesScreen = (props) => {
       data={CATEGORIES}
       renderItem={renderGridItem}
       numColumns={2}
+      style={{ margin: 10 }}
     />
   )
 }
@@ -47,10 +63,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   gridItem: {
-    margin: 15,
-    height: 20,
+    margin: 12,
+    height: 150,
     backgroundColor: '#ddd',
-    height: 55,
+  },
+  title: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 14,
+    textAlign: 'right',
   },
 })
 
