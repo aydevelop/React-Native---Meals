@@ -37,7 +37,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.screen}>
-      <Text>The MealDetailsScreen Screen.......!!!......###.....!!</Text>
+      <Text>The MealDetailsScreen 23424</Text>
       <Button
         title='Go Back'
         onPress={() => {
