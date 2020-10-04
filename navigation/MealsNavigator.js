@@ -28,24 +28,45 @@ function Navigator() {
   )
 }
 
+const FavNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName='Favorites'
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primaryColor },
+        headerTintColor: 'white',
+      }}
+    >
+      <Stack.Screen name='Favorites' component={FavoritesScreen} />
+      <Stack.Screen name='MealDetail' component={MealDetailScreen} />
+    </Stack.Navigator>
+  )
+}
+
 function Tabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: 'black',
-        tabStyle: { color: 'red' },
+        style: { height: 60, paddingTop: 10 },
+        labelStyle: {
+          fontSize: 14,
+          margin: 0,
+          padding: 0,
+          marginBottom: 10,
+        },
       }}
     >
       <Tab.Screen
         name='Meals'
         component={Navigator}
         options={{
-          tabBarIcon: () => <Ionicons name='ios-restaurant' size={25} />,
+          tabBarIcon: () => <Ionicons name='ios-restaurant' size={28} />,
         }}
       />
       <Tab.Screen
         name='Favorites'
-        component={FavoritesScreen}
+        component={FavNavigator}
         options={{
           tabBarIcon: () => <Ionicons name='ios-star' size={25} />,
         }}
