@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Text } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -94,8 +94,20 @@ const FiltersNavigator = () => {
 
 const MyDrawer = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name='MealsFavs' component={Tabs} />
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeTintColor: 'red',
+        style: { marginTop: 20 },
+        labelStyle: {
+          fontFamily: 'open-sans-bold',
+        },
+      }}
+    >
+      <Drawer.Screen
+        name='Meals'
+        component={Tabs}
+        options={{ drawerLabel: 'First page Option' }}
+      />
       <Drawer.Screen name='Filters' component={FiltersNavigator} />
     </Drawer.Navigator>
   )
