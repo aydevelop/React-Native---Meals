@@ -1,16 +1,19 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 import { Ionicons } from '@expo/vector-icons'
 
 import CategoriesScreen from '../screens/CategoriesScreen'
 import CategoryMealsScreen from '../screens/CategoryMealsScreen'
 import MealDetailScreen from '../screens/MealDetailScreen'
 import FavoritesScreen from '../screens/FavoritesScreen'
+import FiltersScreen from '../screens/FilltersScreen'
 import Colors from '../constants/Colors'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+const Drawer = createDrawerNavigator()
 
 function Navigator() {
   return (
@@ -75,4 +78,27 @@ function Tabs() {
   )
 }
 
-export default Tabs
+const FiltersNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName='Filters'
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primaryColor },
+        headerTintColor: 'white',
+      }}
+    >
+      <Stack.Screen name='Filters' component={FiltersScreen} />
+    </Stack.Navigator>
+  )
+}
+
+const MyDrawer = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name='MealsFavs' component={Tabs} />
+      <Drawer.Screen name='Filters' component={FiltersNavigator} />
+    </Drawer.Navigator>
+  )
+}
+
+export default MyDrawer
