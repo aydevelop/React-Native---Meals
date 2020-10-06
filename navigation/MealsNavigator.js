@@ -103,11 +103,7 @@ const MyDrawer = () => {
         },
       }}
     >
-      <Drawer.Screen
-        name='Meals'
-        component={Tabs}
-        options={{ drawerLabel: 'First page Option' }}
-      />
+      <Drawer.Screen name='Meals' component={Tabs} />
       <Drawer.Screen name='Filters' component={FiltersNavigator} />
     </Drawer.Navigator>
   )
