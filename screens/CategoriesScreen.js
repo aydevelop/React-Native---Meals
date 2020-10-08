@@ -8,11 +8,41 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 import { CATEGORIES } from '../data/dummy'
 const { height, width } = Dimensions.get('window')
+import {
+  HeaderButtons,
+  HeaderButton,
+  Item,
+} from 'react-navigation-header-buttons'
+const IoniconsHeaderButton = (props) => (
+  <HeaderButton
+    {...props}
+    IconComponent={Ionicons}
+    iconSize={23}
+    color='white'
+  />
+)
 
 export const CategoriesScreen = (props) => {
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
+          <Item
+            title='Favorite'
+            iconName='ios-menu'
+            onPress={() => {
+              props.navigation.toggleDrawer()
+            }}
+          />
+        </HeaderButtons>
+      ),
+    })
+  })
+
   const renderGridItem = (itemData) => {
     return (
       <TouchableOpacity
