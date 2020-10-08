@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native'
+import { useSelector } from 'react-redux'
 
 import { CATEGORIES, MEALS } from '../data/dummy'
 import MealItem from '../components/MealItem'
@@ -10,6 +11,8 @@ export const MealDetailsScreen = ({ route, navigation }) => {
       title: route.params.title,
     })
   }, [])
+
+  const meals = useSelector((state) => state.meals.filteredMeals)
 
   const catId = CATEGORIES.find((c) => c.title == route.params.title).id
   const displayedMeals = MEALS.filter(

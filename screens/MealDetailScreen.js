@@ -6,6 +6,7 @@ import {
   HeaderButton,
   Item,
 } from 'react-navigation-header-buttons'
+import { useSelector } from 'react-redux'
 
 import Colors from '../constants/Colors'
 const IoniconsHeaderButton = (props) => (
@@ -36,7 +37,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
   }, [])
 
   return (
-    <ScrollView style={{ marginVertical: 20 }}>
+    <ScrollView style={{ marginTop: 20, marginBottom: 40 }}>
       {/* <Image style={styles.image} source={{ uri: route.params.meal.imageUrl }} /> */}
 
       <View style={styles.details}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { useSelector } from 'react-redux'
 
 import MealList from '../components/MealList'
 import { MEALS } from '../data/dummy'
@@ -11,7 +12,7 @@ export const FavoritesScreen = ({ navigation }) => {
     })
   }, [])
 
-  const favMeals = MEALS.filter((meal) => meal.id == 'm1')
+  const favMeals = useSelector((state) => state.meals.meals)
   return <MealList listData={favMeals} />
 }
 
