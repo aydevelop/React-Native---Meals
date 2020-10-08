@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet, Switch } from 'react-native'
 
@@ -39,6 +39,17 @@ export const FiltersScreen = (props) => {
   const [isVegan, setIsVegan] = useState(false)
   const [isVegetarian, setIsVegetarian] = useState(false)
 
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      glutenFree: isGlutenFree,
+      lactoseFree: isLactoseFree,
+      vegan: isVegan,
+      isVegetarian: isVegetarian,
+    }
+
+    console.log('Save -> ' + JSON.stringify(appliedFilters))
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian])
+
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
       headerLeft: () => (
@@ -58,13 +69,17 @@ export const FiltersScreen = (props) => {
             title='Favorite'
             iconName='ios-save'
             onPress={() => {
-              props.navigation.toggleDrawer()
+              saveFilters()
             }}
           />
         </HeaderButtons>
       ),
     })
   }, [])
+
+  // useEffect(() => {
+  //   props.navigation.setParams({ save: saveFilters })
+  // }, [saveFilters])
 
   return (
     <View style={styles.screen}>
