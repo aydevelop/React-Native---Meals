@@ -13,7 +13,7 @@ const MealList = (props) => {
         complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
         onSelectMeal={() => {
-          navigation.navigate('MealDetail', {
+          props.navigation.navigate('MealDetail', {
             meal: itemData.item,
           })
         }}

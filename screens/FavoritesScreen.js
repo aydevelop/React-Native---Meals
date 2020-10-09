@@ -12,8 +12,8 @@ export const FavoritesScreen = ({ navigation }) => {
     })
   }, [])
 
-  const favMeals = useSelector((state) => state.meals.meals)
-  return <MealList listData={favMeals} />
+  const favMeals = useSelector((state) => state.meals.favoriteMeals)
+  return <MealList navigation={navigation} listData={favMeals} />
 }
 
 const styles = StyleSheet.create({

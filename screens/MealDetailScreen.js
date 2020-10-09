@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { ScrollView, View, Text, StyleSheet, Button } from 'react-native'
 import {
@@ -6,8 +6,9 @@ import {
   HeaderButton,
   Item,
 } from 'react-navigation-header-buttons'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { toggleFavorite } from '../store/actions/meals'
 import Colors from '../constants/Colors'
 const IoniconsHeaderButton = (props) => (
   <HeaderButton
@@ -19,6 +20,9 @@ const IoniconsHeaderButton = (props) => (
 )
 
 export const MealDetailsScreen = ({ route, navigation }) => {
+  const dispatch = useDispatch()
+  const favMeals = useSelector((state) => state.meals.favoriteMeals)
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: route.params.meal.title,
@@ -28,7 +32,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
             title='Favorite'
             iconName='ios-star'
             onPress={() => {
-              console.log('test...')
+              dispatch(toggleFavorite(route.params.meal.id))
             }}
           />
         </HeaderButtons>
@@ -48,7 +52,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
       <Text style={styles.title}>Ingredients</Text>
       <View style={styles.item}>
         {route.params.meal.ingredients.map((ing) => (
-          <Text>{ing}</Text>
+          <Text key={ing}>{ing}</Text>
         ))}
       </View>
       <Text style={styles.title}>Steps</Text>
