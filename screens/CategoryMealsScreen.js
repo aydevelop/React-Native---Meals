@@ -12,10 +12,12 @@ export const MealDetailsScreen = ({ route, navigation }) => {
     })
   }, [])
 
-  const meals = useSelector((state) => state.meals.filteredMeals)
+  const filteredMeals = useSelector((state) => state.meals.filteredMeals)
+
+  console.log(filteredMeals.length)
 
   const catId = CATEGORIES.find((c) => c.title == route.params.title).id
-  const displayedMeals = MEALS.filter(
+  const displayedMeals = filteredMeals.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   )
 

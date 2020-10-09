@@ -23,7 +23,7 @@ const mealsReducer = (state = initialstate, action) => {
       }
 
     case SET_FILTERS:
-      const appliedFillters = actions.filters
+      const appliedFillters = action.filters
       const updatedFilteredMeals = state.meals.filter((meal) => {
         if (appliedFillters.glutenFree && !meal.isGlutenFree) {
           return false

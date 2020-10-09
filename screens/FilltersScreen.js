@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { View, Text, StyleSheet, Switch } from 'react-native'
+import { useDispatch } from 'react-redux'
+import { setFilters } from '../store/actions/meals'
 
 import Colors from '../constants/Colors'
 import {
@@ -38,17 +40,18 @@ export const FiltersScreen = (props) => {
   const [isLactoseFree, setIsLactoseFree] = useState(false)
   const [isVegan, setIsVegan] = useState(false)
   const [isVegetarian, setIsVegetarian] = useState(false)
+  const dispatch = useDispatch()
 
-  const saveFilters = useCallback(() => {
+  const saveFilters = () => {
     const appliedFilters = {
-      glutenFree: isGlutenFree,
+      glutenFree: isGlutenFree ? 1 : 0,
       lactoseFree: isLactoseFree,
       vegan: isVegan,
-      isVegetarian: isVegetarian,
+      vegetarian: isVegetarian,
     }
 
-    console.log('Save -> ' + JSON.stringify(appliedFilters))
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian])
+    dispatch(setFilters(appliedFilters))
+  }
 
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -75,7 +78,7 @@ export const FiltersScreen = (props) => {
         </HeaderButtons>
       ),
     })
-  }, [])
+  }, [saveFilters])
 
   // useEffect(() => {
   //   props.navigation.setParams({ save: saveFilters })
