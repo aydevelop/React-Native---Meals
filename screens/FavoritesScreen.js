@@ -13,6 +13,15 @@ export const FavoritesScreen = ({ navigation }) => {
   }, [])
 
   const favMeals = useSelector((state) => state.meals.favoriteMeals)
+
+  if (favMeals.length === 0 || !favMeals) {
+    return (
+      <View style={styles.screen}>
+        <Text style={{ fontSize: 18 }}>No favorite meals found!</Text>
+      </View>
+    )
+  }
+
   return <MealList navigation={navigation} listData={favMeals} />
 }
 

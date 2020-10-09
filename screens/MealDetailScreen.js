@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { ScrollView, View, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, Button, Image } from 'react-native'
 import {
   HeaderButtons,
   HeaderButton,
@@ -42,7 +42,10 @@ export const MealDetailsScreen = ({ route, navigation }) => {
 
   return (
     <ScrollView style={{ marginTop: 20, marginBottom: 40 }}>
-      {/* <Image style={styles.image} source={{ uri: route.params.meal.imageUrl }} /> */}
+      <Image
+        style={styles.image}
+        source={{ uri: route.params.meal.imageUrl }}
+      />
 
       <View style={styles.details}>
         <Text>{route.params.meal.duration}m</Text>
