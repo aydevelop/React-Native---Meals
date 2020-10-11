@@ -22,6 +22,9 @@ const IoniconsHeaderButton = (props) => (
 export const MealDetailsScreen = ({ route, navigation }) => {
   const dispatch = useDispatch()
   const favMeals = useSelector((state) => state.meals.favoriteMeals)
+  const currentMealIsFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === route.params.meal.id)
+  )
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,7 +33,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
         <HeaderButtons HeaderButtonComponent={IoniconsHeaderButton}>
           <Item
             title='Favorite'
-            iconName='ios-star'
+            iconName={currentMealIsFavorite ? 'ios-star' : 'ios-star-outline'}
             onPress={() => {
               dispatch(toggleFavorite(route.params.meal.id))
             }}
@@ -38,7 +41,7 @@ export const MealDetailsScreen = ({ route, navigation }) => {
         </HeaderButtons>
       ),
     })
-  }, [])
+  }, [currentMealIsFavorite])
 
   return (
     <ScrollView style={{ marginTop: 20, marginBottom: 40 }}>
